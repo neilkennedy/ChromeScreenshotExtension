@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(function () {
       conditions: [
         // When a page contains a <video> tag...
         new chrome.declarativeContent.PageStateMatcher({
-          css: ["body"]
+          css: ["body"]//just temporary... will be set to something else when I figure this all out
         })
       ],
       // ... show the page action.
