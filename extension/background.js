@@ -1,15 +1,11 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// Update the declarative rules on install or upgrade.
+// Use a CSS selector to tell Chrome what pages to run this extension on
 chrome.runtime.onInstalled.addListener(function () {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
     chrome.declarativeContent.onPageChanged.addRules([{
       conditions: [
         // When a page contains a <video> tag...
         new chrome.declarativeContent.PageStateMatcher({
-          css: ["body"]//just temporary... will be set to something else when I figure this all out
+          pageUrl: { hostEquals: 'demos.telerik.com', schemes: ['https', 'http'] }//testing
         })
       ],
       // ... show the page action.
@@ -18,7 +14,22 @@ chrome.runtime.onInstalled.addListener(function () {
   });
 });
 
+//When the extension is clicked take the screenshot and set up the drawing area on the webpage
+chrome.pageAction.onClicked.addListener(function (tab) {
+  chrome.tabs.captureVisibleTab({
+    format: "png"
+  }, function (screenshotUrl) {
 
-chrome.pageAction.onClicked.addListener(function(tab) {
-  chrome.tabs.executeScript(null, {file: "drawing.js"});
+    chrome.tabs.executeScript({
+      file: "preScreenshot.js"
+    }, function () {
+      chrome.tabs.executeScript({
+        code: 'document.getElementById("xposureExtensionImage").src = "' + screenshotUrl + '"'
+      }, function () {
+        chrome.tabs.executeScript({
+          file: "postScreenshot.js"
+        });
+      });
+    });
+  });
 });

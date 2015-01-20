@@ -1,0 +1,24 @@
+#xposureExtensionWrapper {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999999;
+}
+
+#xposureExtensionImage {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  
+  display: none;
+}
+
+#xposureExtensionCanvas {
+  padding: 0;
+  margin: 0;
+}
