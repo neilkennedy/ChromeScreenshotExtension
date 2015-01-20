@@ -13,13 +13,11 @@
       "19": "images/icon19.png", // optional
       "38": "images/icon38.png" // optional
     },
-    "default_title": "OpenXposure", // optional; shown in tooltip
-    "default_popup": "popup.html" // optional
+    "default_title": "OpenXposure"//, // optional; shown in tooltip
+    //"default_popup": "popup.html" // optional
   },
   "permissions": [
     "declarativeContent",
-    "activeTab",
-    "clipboardWrite",
-    "clipboardRead"
+    "activeTab"
   ]
 }

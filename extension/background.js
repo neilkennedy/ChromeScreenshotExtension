@@ -18,12 +18,7 @@ chrome.runtime.onInstalled.addListener(function () {
   });
 });
 
-chrome.runtime.onMessage.addListener(function (message) {
-  var imageToCopy = document.createElement('img');
-  document.body.appendChild(imageToCopy);
-  imageToCopy.src = message.data;
 
-  var ctrlRange = document.body.createControlRange();
-  ctrlRange.add(imageToCopy);
-  ctrlRange.execCommand("Copy");
+chrome.pageAction.onClicked.addListener(function(tab) {
+  chrome.tabs.executeScript(null, {file: "drawing.js"});
 });
