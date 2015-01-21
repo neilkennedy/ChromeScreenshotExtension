@@ -13,13 +13,14 @@ var
   linethickness = 5,
   color = "#ff0000";
 
+//Copy the image (screenshot) data onto the canvas
 canvas[0].height = image[0].height;
 canvas[0].width = image[0].width;
 
 context.drawImage(image[0], 0, 0);
-
 oldState = context.getImageData(0, 0, canvas.width(), canvas.height());
 
+//register the event handlers to draw on the canvas
 canvas.on('mousedown', function (event) {
   event.preventDefault();
   // Calculate the current mouse X, Y coordinates with canvas offset
@@ -57,12 +58,8 @@ canvas.on('mousemove', function (event) {
     context.beginPath();
     context.arc(x, y, linethickness, 0, 2 * Math.PI, false);
 
-    context.lineWidth = 3;
-    context.strokeStyle = '#fff';
-    context.stroke();
-
     context.lineWidth = 1;
-    context.strokeStyle = '#000';
+    context.strokeStyle = color;
     context.stroke();
   }
 

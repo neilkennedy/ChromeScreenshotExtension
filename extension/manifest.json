@@ -16,13 +16,6 @@
     "default_title": "OpenXposure"//, // optional; shown in tooltip
     //"default_popup": "popup.html" // optional
   },
-  "content_scripts": [
-    {
-      "matches": ["http://demos.telerik.com/*"],
-      "css": ["styles.css"],
-      "js": ["libs/jquery-2.1.3.min.js"]
-    }
-  ],
   "permissions": [
     "declarativeContent",
     "activeTab",
